@@ -4,7 +4,7 @@ async function analyzeText(inputText) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ "text": inputText }),
     }
-    const response = await fetch("https://coach-summary-inj2j2ieuq-uc.a.run.app", params);
+    const response = await fetch("<insert remote url", params);
     if (!response.ok) {
         throw new Error('HTTP Error! status' + response.status + '' + response.text);
     }
