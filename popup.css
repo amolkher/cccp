@@ -1,0 +1,51 @@
+/* Applies to the entire body of the HTML document (except where overridden by more specific
+selectors). */
+
+body {
+    margin: 24px;
+    background-color: rgb(240,240,240);
+    font-family: Sohne, Arial, sans-serif;
+    font-size: 14px;
+}
+  
+/* Applies to all <h1>...</h1> elements. */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Applies to all <h1>...</h1> elements. */
+p {
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+  
+.someclass { color: red; }
+
+#analyze-button { 
+    background-color: #c91459;
+    color: white;
+    border-color: white;
+    border-width: 1px;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+#coaching-feedback {
+    font-size: 15px;
+    margin-top: 15px;
+    background-color: white;
+    color: black;
+    font-family: serif;
+}
+
+#loading {
+    display: none;
+}
+
+#bu-link {
+    font-style: italic;
+    margin-top: 15px;
+}

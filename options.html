@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>BU Coach Options</title>
+    <link rel="stylesheet" href="css/options.css">
+  </head>
+  <body>
+    <h1>My Extension Options</h1>
+
+    <form id="options-form">
+      <h2>General Settings</h2>
+      <label for="enable-coaching">
+        <input type="checkbox" id="enable-coaching" name="enable-coaching">
+        Enable coaching
+      </label>
+      <p>Check this box to enable email coaching</p>
+
+      <h2>Advanced Settings</h2>
+      <label for="debug-mode">
+        <input type="checkbox" id="debug-mode" name="debug-mode">
+        Enable debug mode
+      </label>
+      <p>Check this box to enable debug mode, which will log additional information to the console.</p>
+
+      <button type="submit">Save</button>
+    </form>
+
+    <script src="js/options.js"></script>
+  </body>
+</html>
