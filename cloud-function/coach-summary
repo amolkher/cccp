@@ -1,0 +1,47 @@
+import functions_framework
+import requests
+from flask import jsonify, abort, request
+
+
+@functions_framework.http
+def generate_coaching_prompt(request):
+
+   # Set CORS headers for the preflight request
+    if request.method == 'OPTIONS':
+        # Allows GET requests from any origin with the Content-Type
+        # header and caches preflight response for an 3600s
+        headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Max-Age': '60'
+        }
+
+        return ('', 204, headers)
+    
+    # Parse request data
+    if not request.is_json:
+        abort(400, 'Request must be in JSON format')
+    text = request.json.get('text')
+    if not text:
+        abort(400, 'Missing required parameter: text')
+    instruction = request.json.get('instruction') or "Reframe it like a communications coach would"
+    
+    # Call OpenAI API to generate prompt
+    api_key = '<insert openai api key'
+    response = requests.post('https://api.openai.com/v1/edits',
+                             headers={'Authorization': f'Bearer {api_key}',
+                                      'Content-Type': 'application/json',
+                                      'Access-Control-Allow-Origin': '*'},
+                             json={ "model": "text-davinci-edit-001", "input": text, "instruction": instruction})
+    if response.status_code != 200:
+        abort(500, f'Error calling OpenAI API: {response.text}')
+    prompt = response.json()['choices'][0]['text']
+    
+    # Return generated prompt to plugin
+    resp = jsonify({'prompt': prompt})
+    resp.headers.set('Access-Control-Allow-Origin', '*')
+    resp.headers.set('Access-Control-Allow-Methods', '*')
+    resp.headers.set('Access-Control-Allow-Headers', '*')
+    return resp
+    
